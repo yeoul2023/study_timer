@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공부 시간 관리</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script>
+        // 다크 모드 깜빡임 방지
+        (function () {
+            const theme = localStorage.getItem('darkMode');
+            if (theme === 'true') {
+                document.documentElement.classList.add('dark-mode');
+                document.documentElement.style.backgroundColor = '#2c2c32';
+            }
+        })();
+    </script>
+    <script type="module" src="js/main.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="top-info">
+            <div>
+                <div id="dateTime">YYYY-MM-DD HH:MM:SS</div>
+                <div id="avg5Day">5일 평균: 0시간 0분</div>
+            </div>
+            <div class="settings">
+                <button id="settingsBtn" class="settings-btn">⚙️</button>
+                <div id="settingsMenu" class="settings-menu">
+                    <button id="manageRecords">기록 관리</button>
+                    <button id="viewStats">통계 보기</button>
+                    <button id="chartSettings">차트 설정</button>
+                    <button id="backupBtn">수동 백업</button>
+                    <button id="restoreBtn">백업 불러오기</button>
+                    <button id="themeToggle">테마 설정</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="goalInfo" class="goal-info">목표: 4시간 00분</div>
+        <div class="goal-bar">
+            <div id="goalFill" class="goal-fill"></div>
+            <div id="goalText" class="goal-text">0%</div>
+        </div>
+
+        <div id="timerDisplay" class="timer">00:00:00</div>
+
+        <div class="btn-group">
+            <button id="checkInBtn" class="btn checkin">
+                <span class="btn-icon">🟢</span>
+                <span class="btn-text">출근</span>
+            </button>
+            <button id="pauseBtn" class="btn state-start">
+                <span class="btn-icon">▶</span>
+                <span class="btn-text">공부 시작</span>
+            </button>
+            <button id="endBtn" class="btn end" disabled>
+                <span class="btn-icon">⏹</span>
+                <span class="btn-text">공부 끝</span>
+            </button>
+
+            <div id="pauseOptions" class="pause-options">
+                <button data-reason="화장실">🚻 화장실</button>
+                <button data-reason="식사">🍽 식사</button>
+                <button data-reason="휴식">🛌 휴식</button>
+                <button data-reason="수업">🎓 수업</button>
+            </div>
+        </div>
+
+        <div id="backupReminder" class="backup-reminder"></div>
+        <div id="chartContainer" class="chart-container"></div>
+    </div>
+
+    <div id="modalOverlay" class="modal-overlay hidden">
+        <div id="modalContent" class="modal-content"></div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+</body>
+</html>
